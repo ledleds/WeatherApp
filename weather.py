@@ -52,7 +52,7 @@ class Weather(Label):
       self.currentIcon = Image(
         source=f'./icons/{self.data[0].icon}.png', 
         pos_hint={'center_x':0.17,'center_y':0.385},
-        size_hint_x= 0.24,
+        size_hint_x= 0.20,
         allow_stretch= True,
       )
 
