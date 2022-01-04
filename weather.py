@@ -133,9 +133,9 @@ class Weather(Label):
       )
       
     def update_weather(self, *args):
+      print('Updating weather')
       self.data = get_weather()
 
-      # update widgets!
       self.currentTemperature.text = f'{str(self.data[0].temp)}°'
       self.currentIcon.source = f'./icons/{self.data[0].icon}.png'
 
