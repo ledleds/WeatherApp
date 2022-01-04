@@ -26,7 +26,7 @@ class WeatherApp(App):
       weather = Weather()
       # Schedule one new update at the next hour
       secondsUntilNextHour = time.seconds_until_next_hour()
-      Clock.schedule_once(weather.update_weather, secondsUntilNextHour)
+      Clock.schedule_once(weather.update_weather, secondsUntilNextHour + 5)
       # Update the weather every 20mins
       Clock.schedule_interval(weather.update_weather, 1200)
 
