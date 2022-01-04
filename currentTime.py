@@ -12,17 +12,17 @@ class Time(Label):
         text = self.now.strftime('%-I:%M %p'), 
         text_size= (800, 200),
         halign="left",
-        pos_hint= {'x': .49, 'y': .85},
+        pos_hint= {'x': .49, 'y': .7},
         size_hint= (None, None),
-        font_size= 100)
+        font_size= 140)
 
       self.current_date = Label(
         text = self.now.strftime('%A %d %B %Y'), 
-        text_size= (250, 200),
+        text_size= (500, 200),
         halign="left",
-        pos_hint= {'x': .15, 'y': .82},
+        pos_hint= {'x': .31, 'y': .64},
         size_hint= (None, None),
-        font_size= 19
+        font_size= 30
       )
 
     def update_clock(self, *args):

@@ -46,36 +46,32 @@ class Weather(Label):
       # now
       self.currentTemperature = Label(
         text = f'{str(self.data[0].temp)}°', 
-        pos_hint={'center_x':0.15,'center_y':0.42},
-        font_size= 19,
+        pos_hint={'center_x':0.17,'center_y':0.22},
+        font_size= 22,
         bold= True,
       )
       self.currentIcon = Image(
         source=f'./icons/{self.data[0].icon}.png', 
-        pos_hint={'center_x':0.15,'center_y':0.56},
-        size_hint_x= 0.17,
+        pos_hint={'center_x':0.17,'center_y':0.385},
+        size_hint_x= 0.24,
         allow_stretch= True
-      )
-      self.currentHour = Label(
-        text = 'Now', 
-        pos_hint={'center_x':0.1,'center_y':0.57}
       )
 
       # in 1hr
       self.secondHour = Label(
         text = convert_hour(self.data[1].hour), 
-        pos_hint={'center_x':0.35,'center_y':0.61},
+        pos_hint={'center_x':0.4,'center_y':0.41},
         font_size= 15,
       )
       self.secondTemperature = Label(
         text = f'{str(self.data[1].temp)}°', 
-        pos_hint={'center_x':0.35,'center_y':0.42},
+        pos_hint={'center_x':0.4,'center_y':0.22},
         font_size= 19,
         bold= True,
       )
       self.secondIcon = Image(
         source=f'./icons/{self.data[1].icon}.png', 
-        pos_hint={'center_x':0.35,'center_y':0.51},
+        pos_hint={'center_x':0.4,'center_y':0.31},
         size_hint_x= 0.09,
         allow_stretch= True
       )
@@ -83,18 +79,18 @@ class Weather(Label):
       # in 2hrs
       self.thirdHour = Label(
         text = convert_hour(self.data[2].hour), 
-        pos_hint={'center_x':0.5,'center_y':0.61},
+        pos_hint={'center_x':0.55,'center_y':0.41},
         font_size= 15,
       )
       self.thirdTemperature = Label(
         text = f'{str(self.data[2].temp)}°', 
-        pos_hint={'center_x':0.5,'center_y':0.42},
+        pos_hint={'center_x':0.55,'center_y':0.22},
         font_size= 19,
         bold= True,
       )
       self.thirdIcon = Image(
         source=f'./icons/{self.data[2].icon}.png', 
-        pos_hint={'center_x':0.5,'center_y':0.51},
+        pos_hint={'center_x':0.55,'center_y':0.31},
         size_hint_x= 0.09,
         allow_stretch= True
       )
@@ -102,18 +98,18 @@ class Weather(Label):
       # in 3hrs
       self.fourthHour = Label(
         text = convert_hour(self.data[3].hour), 
-        pos_hint={'center_x':0.65,'center_y':0.61},
+        pos_hint={'center_x':0.7,'center_y':0.41},
         font_size= 15,
       )
       self.fourthTemperature = Label(
         text = f'{str(self.data[3].temp)}°', 
-        pos_hint={'center_x':0.65,'center_y':0.42},
+        pos_hint={'center_x':0.7,'center_y':0.22},
         font_size= 19,
         bold= True,
       )
       self.fourthIcon = Image(
         source=f'./icons/{self.data[3].icon}.png', 
-        pos_hint={'center_x':0.65,'center_y':0.51},
+        pos_hint={'center_x':0.7,'center_y':0.31},
         size_hint_x= 0.09,
         allow_stretch= True
       )
@@ -121,22 +117,21 @@ class Weather(Label):
       # in 4hrs
       self.fifthHour = Label(
         text = convert_hour(self.data[4].hour), 
-        pos_hint={'center_x':0.8,'center_y':0.61},
+        pos_hint={'center_x':0.85,'center_y':0.41},
         font_size= 15,
       )
       self.fifthTemperature = Label(
         text = f'{str(self.data[4].temp)}°', 
-        pos_hint={'center_x':0.8,'center_y':0.42},
+        pos_hint={'center_x':0.85,'center_y':0.22},
         font_size= 19,
         bold= True,
       )
       self.fifthIcon = Image(
         source=f'./icons/{self.data[4].icon}.png', 
-        pos_hint={'center_x':0.8,'center_y':0.51},
+        pos_hint={'center_x':0.85,'center_y':0.31},
         size_hint_x= 0.09,
         allow_stretch= True
       )
-
       
     def update_weather(self, *args):
       print('OMG Updating weather')
