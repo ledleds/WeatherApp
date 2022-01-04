@@ -27,6 +27,7 @@ You'll need to create an account on [Open Weather Map](https://api.openweatherma
 - Sunset time
 - Feels like time
 - Rain volume (only when raining)
+  - Decipher between light and heavy rain
 - Humidity
 
 Next Level:
