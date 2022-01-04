@@ -25,8 +25,11 @@ class WeatherApp(App):
       Clock.schedule_interval(time.update_clock, 1)
 
       weather = Weather()
-      # Update the weather every 30mins
-      Clock.schedule_interval(weather.update_weather, 1800)
+      # Schedule one new update at the next hour
+      secondsUntilNextHour = time.seconds_until_next_hour()
+      Clock.schedule_once(weather.update_weather, secondsUntilNextHour)
+      # Update the weather every 20mins
+      Clock.schedule_interval(weather.update_weather, 1200)
 
       # Add temp and icon for current weather
       screen.add_widget(weather.widgets['currentTemperature'])

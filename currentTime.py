@@ -3,6 +3,7 @@ kivy.require('2.0.0')
 
 from kivy.uix.label import Label
 from datetime import datetime as dt
+from datetime import timedelta as td
 
 class Time(Label):
     def __init__(self, *args):
@@ -36,3 +37,9 @@ class Time(Label):
     def update_date(self, *args):
       print('Updating date')
       self.current_date.text = self.now.strftime('%A %d %B %Y')
+
+    def seconds_until_next_hour(self):
+      delta = td(hours=1)
+      next_hour = (self.now + delta).replace(microsecond=0, second=0, minute=2)
+
+      return (next_hour - self.now).seconds
