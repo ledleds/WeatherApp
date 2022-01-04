@@ -11,6 +11,7 @@ You'll need to create an account on https://api.openweathermap.org and generate 
 - Sunset time
 - Feels like time
 - Rain volume (only when raining)
+- Humidity
 
 Next Level:
 
