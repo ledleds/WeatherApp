@@ -153,8 +153,10 @@ class Weather(Label):
       self.widgets = generate_widgets(self.data)
       
     def update_weather(self, *args):
-      self.data = get_weather()
-      self.widgets = generate_widgets(self.data)
+      updatedWeather = get_weather()
+      
+      self.data = updatedWeather
+      self.widgets = generate_widgets(updatedWeather)
 
     def start(self):
       print('called start')
