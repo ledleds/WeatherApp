@@ -8,7 +8,6 @@ from kivy.clock import Clock
 from kivymd.uix.screen import Screen
 
 from weather import Weather
-from weather import generate_widgets
 from currentTime import Time
 
 Config.set("graphics", "height", "480")
@@ -29,31 +28,29 @@ class WeatherApp(App):
       # Update the weather every 30mins
       Clock.schedule_interval(weather.update_weather, 1800)
 
-      weatherWidgets = generate_widgets(weather.data)
-
       # Add temp and icon for current weather
-      screen.add_widget(weatherWidgets['currentTemperature'])
-      screen.add_widget(weatherWidgets['currentIcon'])
+      screen.add_widget(weather.widgets['currentTemperature'])
+      screen.add_widget(weather.widgets['currentIcon'])
 
       # Add temp and icon for weather in an hour
-      screen.add_widget(weatherWidgets['secondTemperature'])
-      screen.add_widget(weatherWidgets['secondIcon'])
-      screen.add_widget(weatherWidgets['secondHour'])
+      screen.add_widget(weather.widgets['secondTemperature'])
+      screen.add_widget(weather.widgets['secondIcon'])
+      screen.add_widget(weather.widgets['secondHour'])
 
       # Add temp and icon for weather in 2 hours
-      screen.add_widget(weatherWidgets['thirdTemperature'])
-      screen.add_widget(weatherWidgets['thirdIcon'])
-      screen.add_widget(weatherWidgets['thirdHour'])
+      screen.add_widget(weather.widgets['thirdTemperature'])
+      screen.add_widget(weather.widgets['thirdIcon'])
+      screen.add_widget(weather.widgets['thirdHour'])
 
       # Add temp and icon for weather in 3 hours
-      screen.add_widget(weatherWidgets['fourthTemperature'])
-      screen.add_widget(weatherWidgets['fourthIcon'])
-      screen.add_widget(weatherWidgets['fourthHour'])
+      screen.add_widget(weather.widgets['fourthTemperature'])
+      screen.add_widget(weather.widgets['fourthIcon'])
+      screen.add_widget(weather.widgets['fourthHour'])
 
       # Add temp and icon for weather in 4 hours
-      screen.add_widget(weatherWidgets['fifthTemperature'])
-      screen.add_widget(weatherWidgets['fifthIcon'])
-      screen.add_widget(weatherWidgets['fifthHour'])
+      screen.add_widget(weather.widgets['fifthTemperature'])
+      screen.add_widget(weather.widgets['fifthIcon'])
+      screen.add_widget(weather.widgets['fifthHour'])
 
       return screen
 

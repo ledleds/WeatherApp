@@ -150,9 +150,11 @@ def generate_widgets(data):
 class Weather(Label):
     def __init__(self, *args):
       self.data = get_weather()
+      self.widgets = generate_widgets(self.data)
       
     def update_weather(self, *args):
       self.data = get_weather()
+      self.widgets = generate_widgets(self.data)
 
     def start(self):
       print('called start')
