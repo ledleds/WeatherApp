@@ -4,7 +4,23 @@ A weather app built using Python and Kivy to be displayed on a 5inch Raspberry P
 
 ## Running
 
-You'll need to create an account on https://api.openweathermap.org and generate an API key to be replaced in the request on line 22 of weather.py.
+### Install Dependencies
+
+This is a Python Project, so make sure you have that installed.
+
+Follow the instructions on Kivy [here](https://kivy.org/doc/stable/gettingstarted/installation.html) to install Kivy Version 2.0.0.
+
+You will also need KivyMD, docks for installing that are [here](https://kivymd.readthedocs.io/en/0.104.0/getting-started.html).
+
+### Secrets
+
+You'll need to create an account on [Open Weather Map](https://api.openweathermap.org) and generate an API key to be replaced in the request on line 22 of weather.py.
+
+### Now, run it
+
+`python main.py`
+
+
 
 ## Things to add
 
