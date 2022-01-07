@@ -2,6 +2,8 @@
 
 A weather app built using Python and Kivy to be displayed on a 5inch Raspberry Pi Display.
 
+<img width="500" alt="Screenshot 2022-01-07 at 7 28 47 pm" src="https://user-images.githubusercontent.com/22013969/148596751-9dc46b0b-c5ac-4890-8a35-5c5f6b41a640.png">
+
 ## Running
 
 ### Install Dependencies
@@ -19,8 +21,6 @@ You'll need to create an account on [Open Weather Map](https://api.openweatherma
 ### Now, run it
 
 `python main.py`
-
-
 
 ## Things to add
 
