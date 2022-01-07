@@ -24,10 +24,32 @@ location = get_location()
 class WeatherDataPerHour:
     def __init__(self, data):
       # should call convert_hour in here instead of in each label
+      self.description = data["weather"][0]["description"]
       self.hour = dt.fromtimestamp(data["dt"]).hour
       self.icon = data["weather"][0]["icon"]
       self.temp = round(data["temp"])
       self.feelsLike = round(data["feels_like"])
+      
+      self.main = data["weather"][0]["main"]
+      if self.main == 'Rain':
+        self.changeRainIcon()
+    
+    def changeRainIcon(self):
+      data = {
+        'light rain': 'light-rain',
+        'moderate rain': 'moderate-rain',
+        'heavy intensity rain': '09',
+        'very heavy rain': 'very-heavy',
+        'extreme rain': '10',
+        'freezing rain': 'very-heavy',
+        'light intensity shower rain': 'very-heavy',
+        'shower rain': 'very-heavy',
+        'heavy intensity shower rain': 'very-heavy',
+        'ragged shower': 'very-heavy',
+      }
+
+      self.icon = f"{data[self.description]}{self.icon[-1]}"
+
 
 def get_weather():
   weather = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?lat={location['lat']}&lon={location['long']}&exclude=minutely,alerts,daily&units=metric&appid={os.environ['WEATHER_API_KEY']}").json()
