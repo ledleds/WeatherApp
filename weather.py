@@ -5,9 +5,21 @@ import requests
 
 from kivy.uix.label import Label
 from kivy.uix.image import Image
-from kivy.clock import Clock
 
 from datetime import datetime as dt
+
+def get_location():
+  data = requests.get("https://ipinfo.io").json()
+
+  if data["country"] == 'US':
+    # hack for running in replit
+    # return London if location is US
+    return {"lat": '51.5072', "long": '0.1276'}
+  else: 
+    arr = data["loc"].split(",")
+    return {"lat": arr[0], "long": arr[1]}
+
+location = get_location()
 
 class WeatherDataPerHour:
     def __init__(self, data):
@@ -18,7 +30,7 @@ class WeatherDataPerHour:
       self.feelsLike = round(data["feels_like"])
 
 def get_weather():
-  weather = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?lat=51.554780&lon=-0.040490&exclude=minutely,alerts,daily&units=metric&appid={os.environ['WEATHER_API_KEY']}").json()
+  weather = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?lat={location['lat']}&lon={location['long']}&exclude=minutely,alerts,daily&units=metric&appid={os.environ['WEATHER_API_KEY']}").json()
 
   formattedWeatherNow = WeatherDataPerHour(weather["current"])
   nextHour = WeatherDataPerHour(weather["hourly"][1]);
