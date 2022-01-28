@@ -5,6 +5,7 @@ from kivy.app import App
 from kivy.config import Config
 from kivy.clock import Clock
 from kivymd.uix.screen import Screen
+from kivy.uix.label import Label
 
 from weather import Weather
 from currentTime import Time
@@ -53,6 +54,19 @@ class WeatherApp(App):
       screen.add_widget(weather.fifthTemperature)
       screen.add_widget(weather.fifthIcon)
       screen.add_widget(weather.fifthHour)
+
+      if (weather.error == True):
+        screen.add_widget(
+          Label(
+            text = "Weather Error", 
+            text_size= (500, 200),
+            halign="left",
+            pos_hint= {'x': .27, 'y': .99},
+            size_hint= (None, None),
+            font_size= 30,
+            color= (1, 0, 0)
+          )
+        )
 
       return screen
 
