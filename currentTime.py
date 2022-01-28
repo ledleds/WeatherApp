@@ -31,7 +31,7 @@ class Time(Label):
       self.current_time.text = self.now.strftime('%-I:%M %p').lower()
 
       # If it is midnight, update the date too.
-      if self.now.hour == 0 and self.now.minute == 0 and self.now.second == 0 and self.now.microsecond == 0:
+      if self.now.hour == 0 and self.now.minute == 0 and self.now.second == 0:
         self.update_date()
 
     def update_date(self, *args):

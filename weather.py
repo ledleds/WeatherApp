@@ -50,12 +50,17 @@ class WeatherDataPerHour:
 
       self.icon = f"{data[self.description]}{self.icon[-1]}"
 
-
 def get_weather():
-  weather = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?lat={location['lat']}&lon={location['long']}&exclude=minutely,alerts,daily&units=metric&appid={os.environ['WEATHER_API_KEY']}").json()
+  weather = None
+
+  try:
+    weather = requests.get(f"https://api.openweathermap.org/data/2.5/onecall?lat={location['lat']}&lon={location['long']}&exclude=minutely,alerts,daily&units=metric&appid={os.environ['WEATHER_API_KEY']}").json()
+  except:
+    print("An error occurred", weather.status_code)
+    return []
 
   formattedWeatherNow = WeatherDataPerHour(weather["current"])
-  nextHour = WeatherDataPerHour(weather["hourly"][1]);
+  nextHour = WeatherDataPerHour(weather["hourly"][1])
   secondHour = WeatherDataPerHour(weather["hourly"][2])
   thirdHour = WeatherDataPerHour(weather["hourly"][3])
   fourthHour = WeatherDataPerHour(weather["hourly"][4])
@@ -75,10 +80,11 @@ def convert_hour(hour):
 # {'feelsLike': 4, 'hour': 22, 'icon': '10n', 'temp': 5}
 class Weather(Label):
     def __init__(self, *args):
+      self.error = False
       self.data = get_weather()
 
       self.currentTemperature = Label(
-        text = f'{str(self.data[0].temp)}°', 
+        text = f'{str(self.data[0].temp)}°',
         pos_hint={'center_x':0.17,'center_y':0.22},
         font_size= 22,
         bold= True,
@@ -167,8 +173,14 @@ class Weather(Label):
       )
       
     def update_weather(self, *args):
-      print('Updating weather')
-      self.data = get_weather()
+      weather = get_weather()
+
+      if weather:
+        print('Updating weather')
+        self.data = weather
+        self.error = False
+      else:
+        self.error = True
 
       self.currentTemperature.text = f'{str(self.data[0].temp)}°'
       self.currentIcon.source = f'./icons/{self.data[0].icon}.png'
