@@ -39,7 +39,7 @@ class WeatherScreen(Screen): #welcomeScreen subclass
 
     def on_touch_move(self, touch):
       if touch.x < touch.ox: # this line checks if a left swipe has been detected
-        PanelBuilderApp().change_screen(screen_name="weatherScreen") # calls the method in the main app that changes the screen
+        self.manager.current = 'weatherScreen' # calls the method in the main app that changes the screen
 
 class FunctionScreen(Screen):  #For later function navigation
     def __init__(self, **kwargs): #constructor method
@@ -49,6 +49,10 @@ class FunctionScreen(Screen):  #For later function navigation
                               halign='center', valign='center', size_hint=(0.4,0.2), pos_hint={'top': 1, 'center_x': 0.5})
         functionPage.add_widget(functionLabel)
         self.add_widget(functionPage)
+    
+    def on_touch_move(self, touch):
+      if touch.x > touch.ox: # this line checks if a left swipe has been detected
+        self.manager.current = 'welcomeScreen'
 
 if __name__ == '__main__':
     PanelBuilderApp().run()
