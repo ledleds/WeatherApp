@@ -5,6 +5,7 @@ from kivy.app import App
 from kivy.config import Config
 from kivy.clock import Clock
 from kivymd.uix.screen import Screen
+from kivymd.uix.ScreenManager import ScreenManager
 from kivy.uix.label import Label
 
 from weather import Weather
@@ -13,10 +14,18 @@ from currentTime import Time
 Config.set("graphics", "height", "480")
 Config.set("graphics", "width", "800")
 
+
 class WeatherApp(App):
 
     def build(self):
-      screen = Screen()
+      sm = ScreenManager()
+
+
+      screen = Screen(name="Main")
+      sm.add_widget(screen)
+
+      secondScreen = Screen(name="secondary")
+      sm.add_widget(secondScreen)
 
       time = Time()
       # Add time to the screen
@@ -68,6 +77,7 @@ class WeatherApp(App):
           )
         )
 
+      sm.current = 'Main'
       return screen
 
 WeatherApp().run()
