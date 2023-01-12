@@ -4,8 +4,7 @@ kivy.require('2.0.0')
 from kivy.app import App
 from kivy.config import Config
 from kivy.clock import Clock
-from kivymd.uix.screen import Screen
-from kivymd.uix.ScreenManager import ScreenManager
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
 
 from weather import Weather
