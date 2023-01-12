@@ -1,85 +1,39 @@
 import kivy
-kivy.require('2.0.0') 
-
+kivy.require('2.0.0')
 from kivy.app import App
-from kivy.config import Config
-from kivy.clock import Clock
-from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.screenmanager import ScreenManager, Screen
+from weatherScreen import WeatherScreen
 
-from weather import Weather
-from currentTime import Time
 
-Config.set("graphics", "height", "480")
-Config.set("graphics", "width", "800")
-
-
-class WeatherApp(App):
-
+class PanelBuilderApp(App):  # display the welcome screen
     def build(self):
-      sm = ScreenManager()
+        sm = ScreenManager()
+        sm.add_widget(WelcomeScreen(name='welcomeScreen'))
+        sm.add_widget(WeatherScreen(name='weatherScreen'))
+        return sm
 
+class WelcomeScreen(Screen): 
+    def __init__(self, **kwargs):
+        super(WelcomeScreen, self).__init__(**kwargs) #init parent
+        functionPage = FloatLayout()
+        functionLabel = Label(text='Welcome to this app. Here you will choose what functions to use',
+                              halign='center', valign='center', size_hint=(0.4,0.2), pos_hint={'top': 1, 'center_x': 0.5})
+        functionPage.add_widget(functionLabel)
+        weatherButton = Button(text= 'Click to see weather', on_press=self.callback)
+        functionPage.add_widget(weatherButton)
+        self.add_widget(functionPage)
 
-      screen = Screen(name="Main")
-      sm.add_widget(screen)
+    def callback(self, instance):
+        print('The button has been pressed')
+        self.manager.current = 'weatherScreen'
 
-      secondScreen = Screen(name="secondary")
-      sm.add_widget(secondScreen)
-
-      time = Time()
-      # Add time to the screen
-      screen.add_widget(time.current_time)
-      screen.add_widget(time.current_date)
-      Clock.schedule_interval(time.update_clock, 1)
-
-      weather = Weather()
-      # Schedule one new update at the next hour
-      secondsUntilNextHour = time.seconds_until_next_hour()
-      Clock.schedule_once(weather.update_weather, secondsUntilNextHour + 5)
-      # Update the weather every 10mins
-      Clock.schedule_interval(weather.update_weather, 600)
-
-      # Add temp and icon for current weather
-      screen.add_widget(weather.currentTemperature)
-      screen.add_widget(weather.currentIcon)
-
-      # Add temp and icon for weather in an hour
-      screen.add_widget(weather.secondTemperature)
-      screen.add_widget(weather.secondIcon)
-      screen.add_widget(weather.secondHour)
-
-      # Add temp and icon for weather in 2 hours
-      screen.add_widget(weather.thirdTemperature)
-      screen.add_widget(weather.thirdIcon)
-      screen.add_widget(weather.thirdHour)
-
-      # Add temp and icon for weather in 3 hours
-      screen.add_widget(weather.fourthTemperature)
-      screen.add_widget(weather.fourthIcon)
-      screen.add_widget(weather.fourthHour)
-
-      # Add temp and icon for weather in 4 hours
-      screen.add_widget(weather.fifthTemperature)
-      screen.add_widget(weather.fifthIcon)
-      screen.add_widget(weather.fifthHour)
-
-      if (weather.error == True):
-        screen.add_widget(
-          Label(
-            text = "Weather Error", 
-            text_size= (500, 200),
-            halign="left",
-            pos_hint= {'x': .27, 'y': .99},
-            size_hint= (None, None),
-            font_size= 30,
-            color= (1, 0, 0)
-          )
-        )
-
-      sm.current = 'Main'
-      return screen
-
-WeatherApp().run()
+    def on_touch_move(self, touch):
+      if touch.x > touch.ox: # this line checks if a right swipe has been detected
+        self.manager.current = 'weatherScreen'
 
 if __name__ == '__main__':
-  WeatherApp().run()
+    PanelBuilderApp().run()
